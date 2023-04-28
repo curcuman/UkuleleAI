@@ -6,7 +6,7 @@
 #include <stm32l4_wiring_private.h>
 
 #include "ADC3101.h"
-#include "gsc_model_fixed2.h"
+#include "ukulele_model_fixed2.h"
 
 #define I2S_SAMPLE_RATE 16000  // [16000, 48000] supported by the microphone
 #define I2S_BITS_PER_SAMPLE 16 // I2S wordlength is 16
@@ -34,6 +34,9 @@ I2SClass I2S(&_SAI, g_SAIInstance, &g_SAIPins, STM32L4_SAI_IRQ_PRIORITY, g_SAIMo
 
 // ADC3101 on I2C3
 ADC3101 adc3101(Wire1);
+
+// Classes
+char *labels[] = {"A", "B", "C", "D", "E", "F", "G"};
 
 void processI2SData(uint8_t *data, size_t size) {
   int16_t *data16 = (int16_t *)data;
@@ -65,16 +68,6 @@ void setup() {
 
   pinMode(PIN_LED, OUTPUT);
 
-  // For RFThing-DKAIoT
-  /*
-  pinMode(LS_GPS_ENABLE, OUTPUT);
-  digitalWrite(LS_GPS_ENABLE, LOW);
-  pinMode(LS_GPS_V_BCKP, OUTPUT);
-  digitalWrite(LS_GPS_V_BCKP, LOW);
-  pinMode(SD_ON_OFF, OUTPUT);
-  digitalWrite(SD_ON_OFF, HIGH);
-  */
-
   adc3101.setup();
 
   delay(500);
@@ -104,9 +97,6 @@ void loop() {
     // Start timer
     long long t_start = millis();
  
-    // Send signed 16-bit PCM little endian 1 channel
-    //Serial.write((uint8_t*)inputs[0], MODEL_INPUT_SAMPLES*2);
-
     // Predict
     cnn(inputs, outputs);
 
@@ -120,8 +110,9 @@ void loop() {
       }
     }
 
-    static char msg[32];
-    snprintf(msg, sizeof(msg), "%d,%d,%d", label, max_val, (int)(millis() - t_start));
+    static char msg[100];
+    //snprintf(msg, sizeof(msg), "%s,%d,%d", labels[label], max_val, (int)(millis() - t_start));
+    snprintf(msg, sizeof(msg), " Chord recognized: %s, with a time delay: %d", labels[label], (int)(millis() - t_start));
     Serial.println(msg);
 
     // Turn LED off after prediction has been sent

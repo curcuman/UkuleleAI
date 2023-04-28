@@ -7,19 +7,25 @@ import time
 import os
 import wave
 
-label = "D/D_"
-name = 0
+#Constants
+dataset_dir = "dataset/"
+current_label = "G"
+sample_number = 0
+
 channels = 1
 sample_width = 2
 sample_rate = 16000
 
 def main(dev: str='COM13', baudrate: int=921600, timeout: int=10):
-    name = 0
-    wav_file = wave.open('data/'+label+str(name)+'.wav', 'wb')
+    name = 0 #The number of the sample
+    if not os.path.exists(dataset_dir + current_label):
+        os.makedirs(dataset_dir + current_label)
+    wav_file = wave.open(dataset_dir+current_label+'/'+current_label+'_'+str(name)+'.wav', 'wb')
     wav_file.setnchannels(channels)
     wav_file.setsampwidth(sample_width)
     wav_file.setframerate(sample_rate)
     print(f'Waiting on {dev}…')
+    print("for recording:", current_label)
     ser = None
     while ser is None:
         try:
@@ -35,7 +41,7 @@ def main(dev: str='COM13', baudrate: int=921600, timeout: int=10):
                 print("received ",name+1," samples")
                 r = r[:-32]
                 name += 1
-                wav_file = wave.open('data/'+label+str(name)+'.wav', 'wb')
+                wav_file = wave.open(dataset_dir+current_label+'/'+current_label+'_'+str(name)+'.wav', 'wb')
                 wav_file.setnchannels(channels)
                 wav_file.setsampwidth(sample_width)
                 wav_file.setframerate(sample_rate)

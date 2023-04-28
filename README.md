@@ -8,3 +8,4 @@
   - Receiving_splitting_pcm.py receives and creates the dataset in pcm
   - Receiving_splitting_wav.py receives and creates the dataset in wav (currently used)
   
+-notice that in the confuson matrix, the chords that are similar are more confused
