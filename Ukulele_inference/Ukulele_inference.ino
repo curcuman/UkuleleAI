@@ -111,7 +111,6 @@ void loop() {
     }
 
     static char msg[100];
-    //snprintf(msg, sizeof(msg), "%s,%d,%d", labels[label], max_val, (int)(millis() - t_start));
     snprintf(msg, sizeof(msg), " Chord recognized: %s, with a time delay: %d", labels[label], (int)(millis() - t_start));
     Serial.println(msg);
 
