@@ -69,16 +69,6 @@ void setup() {
 
   pinMode(PIN_LED, OUTPUT);
 
-  // For RFThing-DKAIoT
-  /*
-  pinMode(LS_GPS_ENABLE, OUTPUT);
-  digitalWrite(LS_GPS_ENABLE, LOW);
-  pinMode(LS_GPS_V_BCKP, OUTPUT);
-  digitalWrite(LS_GPS_V_BCKP, LOW);
-  pinMode(SD_ON_OFF, OUTPUT);
-  digitalWrite(SD_ON_OFF, HIGH);
-  */
-
   adc3101.setup();
 
   delay(500);

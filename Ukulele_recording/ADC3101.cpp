@@ -124,15 +124,15 @@ void ADC3101::setup() {
   writeI2C(0x52, 0b00000000);
   //writeI2C(0x52, 0b00001000); // MUTE RIGHT, UNMUTE RIGHT
 
-  if (debug) Serial.println("Set left ADC volume control = 5 dB");
+  if (debug) Serial.println("Set left ADC volume control = -4 dB");
   //writeI2C(0x53, 0b00101000); // 20dB
   //writeI2C(0x53, 0b00010100); // 10dB
-  writeI2C(0x53, 0b11111100); // -4db 
+  writeI2C(0x53, 0b11111100); // set to -4db 
 
-  if (debug) Serial.println("Set right ADC volume control = 5 dB");
+  if (debug) Serial.println("Set right ADC volume control = -4 dB");
   //writeI2C(0x54, 0b00101000); // 20dB
   //writeI2C(0x54, 0b00010100); // 10dB
-  writeI2C(0x54, 0b11111100); // -4dB
+  writeI2C(0x54, 0b11111100); // set to -4dB
 
 
   if (debug) Serial.println("5. Program filters");
