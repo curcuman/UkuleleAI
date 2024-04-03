@@ -14,13 +14,13 @@
 #include "number.h"
 #endif
 
-#define MODEL_OUTPUT_SAMPLES 4
+#define MODEL_OUTPUT_SAMPLES 7
 #define MODEL_INPUT_SAMPLES 16000 // node 0 is InputLayer so use its output shape as input shape of the model
 #define MODEL_INPUT_CHANNELS 1
 
 void cnn(
   const number_t input[MODEL_INPUT_CHANNELS][MODEL_INPUT_SAMPLES],
-  //dense_3_output_type dense_3_output);
+  //dense_59_output_type dense_59_output);
   number_t output[MODEL_OUTPUT_SAMPLES]);
 
 #endif//__MODEL_H__

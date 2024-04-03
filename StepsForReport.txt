@@ -1,1 +1,0 @@
-fixed gain testing and receiving adc value
