@@ -3,10 +3,7 @@
 - La cartella `Ukulele_recording` contiene il codice che invia i buffer della registrazione, separati da un delimitatore di caratteri.
 - La cartella `Ukulele_inference` contiene il codice e il modello per effettuare previsioni in tempo reale.
 - Il notebook contiene la migliore versione ottenuta durante i test per la CNN, che ha raggiunto il 90%.
-- I file Python:
-  - `serial_client_i2s_pcm.py` contiene il codice originale.
-  - `Receiving_splitting_pcm.py` riceve i dati e crea il dataset in formato PCM.
-  - `Receiving_splitting_wav.py` riceve i dati e crea il dataset in formato WAV (attualmente utilizzato).
+- Il file Python `Receiving_splitting_wav.py` riceve i dati e crea il dataset in formato WAV (attualmente utilizzato).
 
 Nota: nella confusion matrix, gli accordi più simili vengono confusi più facilmente.
 
